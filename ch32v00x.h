@@ -165,7 +165,7 @@ typedef struct
 {
     __IO uint32_t CFGLR;
     __IO uint32_t CFGHR;
-    __IO uint32_t INDR;
+  	__I  uint32_t INDR;
     __IO uint32_t OUTDR;
     __IO uint32_t BSHR;
     __IO uint32_t BCR;
@@ -371,6 +371,7 @@ typedef struct
 #define FLASH_R_BASE                            (AHBPERIPH_BASE + 0x2000) /* Flash registers base address */
 #define OB_BASE                                 ((uint32_t)0x1FFFF800)    /* Flash Option Bytes base address */
 #define DBGMCU_BASE                             ((uint32_t)0xE000D000)
+#define ESIG_BASE                               ((uint32_t)0x1FFFF7E0)
 #define EXTEN_BASE                              ((uint32_t)0x40023800)
 
 /* Peripheral declaration */
@@ -400,6 +401,7 @@ typedef struct
 #define FLASH                                   ((FLASH_TypeDef *)FLASH_R_BASE)
 #define OB                                      ((OB_TypeDef *)OB_BASE)
 #define DBGMCU                                  ((DBGMCU_TypeDef *)DBGMCU_BASE)
+#define ESIG                                    ((ESG_TypeDef *)ESIG_BASE)
 #define EXTEN                                   ((EXTEN_TypeDef *)EXTEN_BASE)
 
 /******************************************************************************/
@@ -3160,12 +3162,11 @@ typedef enum
 /* Output Maximum frequency selection */
 typedef enum
 {
-    GPIO_Speed_10MHz = 1,
-    GPIO_Speed_2MHz,
-    GPIO_Speed_50MHz
+	GPIO_SPEED_IN,
+	GPIO_Speed_10MHz,
+	GPIO_Speed_2MHz,
+	GPIO_Speed_50MHz
 } GPIOSpeed_TypeDef;
-
-#define GPIO_SPEED_IN 0
 
 #define GPIO_CNF_IN_ANALOG   0
 #define GPIO_CNF_IN_FLOATING 4
